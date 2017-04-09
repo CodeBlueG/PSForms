@@ -107,7 +107,7 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 #region Form Details
 	$iconFile = "C:\Windows\SysWOW64\cmd.exe"
 	$mainform = New-Form -formObject $MainForm -escapeToClose -iconFile $iconFile
-	$lblMainFormTitle = Add-FormTitle -formObject $mainForm -titleText "Some Title Text" -titleFont Helvetica -bold
+	$lblMainFormTitle = Add-FormTitle -formObject $mainForm -titleText "Some Title Text" -titleFont Tahoma -bold
 
 #region Column 1
 	$MainForm = Add-Row -formObject $mainform -rowsHigh 1 -newColumn
@@ -192,7 +192,17 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 
 # Calculate form size
 	$MainForm = Set-FormSizing -formObject $MainForm
-
+	
+#region buttons and pictures
+# Add buttons to footer, number is button number counting from right to left
+	$btnButton1 = Add-formbutton -formObject $mainform -buttonText "Test Button 1" -buttonLocation 1
+		$btnButton1.add_Click({Reset-FormFields -formObject $mainform})
+	$btnButton2 = Add-formbutton -formObject $mainform -buttonText "Test Button 2" -buttonLocation 2
+	
+	$picCompanyLogo = Add-FormPicture -formObject $mainform -pictureImage $CompanyLogo -pictureLocation "Footer"
+	$picCustomerLogo = Add-FormPicture -formObject $mainform -pictureImage $CustomerLogo -pictureLocation "Header" 
+		
+#endregion buttons and pictures
 
 
 	$null = show-Form -formObject $mainForm
