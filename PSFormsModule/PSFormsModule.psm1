@@ -256,6 +256,8 @@ Function Add-FormObject {
 <## TO DO ##
 	add tab index, use 'currenttab' attribute on form (?)
 	add error markers on form, apply them in here(?)
+	add size options - quarters of width, 1q, 2q, 3q, full?
+	checkedlistbox formating - checkOnClick, ThreeD etc...
 #>
 	Param(
 		[parameter(Mandatory=$true)]

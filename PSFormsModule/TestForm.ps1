@@ -14,13 +14,21 @@ Import-Module PSForms -MinimumVersion 1.0 -MaximumVersion 1.0
 	$MainForm.RowHeight = 20
 	$MainForm.ButtonWidth = 90
 	$MainForm.ButtonHeight = 20
-	$MainForm.formFont = "Arial"
+	$MainForm.formFont = "Helvetica"
 	
 # Add lists that can be used in Comboboxes etc.
 	$cboSampleText23_List = @("List Sample 1","List Sample 2","List Sample 3","List Sample 4")
 	
 #endregion
 
+#region Form Functions
+
+Function chkSampleText28_CheckChanged {
+    $datSampleText29.Visible = $chkSampleText28.Checked
+	If($datSampleText29.Visible -eq $false){$datSampleText29.Text = ""}
+	Else{$datSampleText29.text = (Get-Date ((Get-Date).AddMonths(3)) -Format "dd/MM/yyyy")}
+}
+#endregion Form Functions
 
 $CompanyLogo = "/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/7AARRHVja3kAAQAEAAAAZAAA
 	/9sAQwACAQECAQECAgICAgICAgMFAwMDAwMGBAQDBQcGBwcHBgcHCAkLCQgICggHBwoNCgoLDAwMDAcJDg8NDA4LDAwM/9sAQwEC
