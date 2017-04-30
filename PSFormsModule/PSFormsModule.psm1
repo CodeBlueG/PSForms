@@ -19,6 +19,7 @@
 # Versions:
 # 07/02/2017 - 0.1 - Initial Beta release for testing and approval
 # 21/03/2017 - 1.0 - Initial release for use
+# 30/04/2017 - 1.1 - Added $listFile to allow comboBox to use entries from text file, doesn't need to be a variable
 #
 #
 # Cmdlets available				:	Version introduced	:	Last Modified
@@ -287,6 +288,9 @@ Function Add-FormObject {
 		[object]
 		$list,
 		[parameter(Mandatory=$false)]
+		[string]
+		$listFile,
+		[parameter(Mandatory=$false)]
 		[switch]
 		$dropDown,
 		[parameter(Mandatory=$false)]
@@ -434,9 +438,16 @@ Function Add-FormObject {
 	If($textAlign){$object.textAlign = $textAlign}
 	If($border){$object.BorderStyle = [System.Windows.Forms.BorderStyle]::FixedSingle}
 
-	If($objectType -like "comboBox" -or $objectType -like "CheckedListBox" -and $list){
-		ForEach($entry in $list){
-			$object.Items.Add($entry)
+	If($objectType -like "comboBox" -or $objectType -like "CheckedListBox"){
+		If($list){
+			ForEach($entry in $list){
+				$object.Items.Add($entry)
+			}
+		}
+		ElseIf($listFile){
+			ForEach($entry in Get-Content $listFile){
+				$object.Items.Add($entry)
+			}
 		}
 	}
 
