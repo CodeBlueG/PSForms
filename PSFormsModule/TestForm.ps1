@@ -1,5 +1,6 @@
 
-Import-Module PSForms -MinimumVersion 1.0 -MaximumVersion 1.0
+#Import-Module PSForms -MinimumVersion 1.1 -MaximumVersion 2.0
+Import-Module C:\Users\garethj.edwards\Source\Repos\PSForms\PSFormsModule\PSFormsModule.psm1
 
 #region User Entered Variables
 # Set values used to create form

@@ -1163,7 +1163,7 @@ Function Set-FormSizing {
 	)
 
 	[int]$RowHeight = $FormObject.rowHeight
-	[int]$TotalRowCount = $FormObject.totalRowCount
+	[int]$TotalRowCount = $FormObject.totalRowCount - 1
 	[int]$VertSpace = $FormObject.vertSpace
 	[int]$ColWidthEven = $FormObject.ColWidthEven
 	[int]$ColWidthOdd = $FormObject.ColWidthOdd
