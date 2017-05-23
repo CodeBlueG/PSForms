@@ -111,7 +111,10 @@ Function Add-FormButton {
 		$buttonFont,
 		[parameter(Mandatory=$false)]
 		[int]
-		$buttonLocation
+		$buttonLocation,
+		[parameter(Mandatory=$false)]
+		[string]
+		$buttonSize
 	)
 	
 	[int]$FooterHeight = $FormObject.footerHeight
@@ -131,15 +134,12 @@ Function Add-FormButton {
 		$object.Location = New-Object System.Drawing.Size($LocationX,$LocationY)
 	}
 	Else{
-		Add-Member -InputObject $object -MemberType NoteProperty -Name cellSize -Value $cellSize
+		Add-Member -InputObject $object -MemberType NoteProperty -Name cellSize -Value $buttonSize
 		Add-Member -InputObject $object -MemberType NoteProperty -Name cellRow -Value $FormObject.CurrentRow
 		Add-Member -InputObject $object -MemberType NoteProperty -Name cellColumn -Value $FormObject.CurrentColumn
 		Add-Member -InputObject $object -MemberType NoteProperty -Name rowHigh -Value $FormObject.CurrentRowHigh
 		$object.size = Set-ObjectSize $FormObject $object
 		$object.location = Set-ObjectLocation $formObject $object
-		
-		Write-Host ($object.location)
-		Write-Host ($object.size)
 	}
 
 
@@ -1329,7 +1329,7 @@ Function Set-ObjectSize {
 	{
 		Full {$CellWidth = $ColWidth}
 		HalfLeft {$CellWidth = $ColWidth/2 - $HorizSpace/4}
-		1QLeft {$CellWidth = $ColWidth/8 - $HorizSpace/4}
+		1QLeft {$CellWidth = $ColWidth/4 - $HorizSpace/4}
 		HalfRight {$CellWidth = $ColWidth/2 - $HorizSpace/4}
 		3QRight {$CellWidth = ((3 * $ColWidth)/4) - $HorizSpace/4}
 		Double {$CellWidth = $ColWidthOdd + $ColWidthEven + $HorizSpace}

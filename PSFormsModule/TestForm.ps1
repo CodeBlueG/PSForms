@@ -190,7 +190,7 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 	$MainForm = Add-Row $mainform 1 -newColumn
 	$lblLabel3 = Add-FormObject -formObject $mainForm -objectType Label -border
 	$MainForm = Add-Row $mainform 1
-	$btnTest1 = Add-FormButton -FormObject $MainForm -buttonText "Test"
+	$btnTest1 = Add-FormButton -FormObject $MainForm -buttonText "Test" -buttonSize "Full"
 
 #endregion column 3
 
@@ -198,6 +198,9 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 #	$mainform = Add-Column $mainform
 	$MainForm = Add-Row $mainform 1 -newColumn
 	$lblLabel5 = Add-FormObject -formObject $mainForm -objectType Label -border
+	$MainForm = Add-Row $mainform 1
+	$btnTest2 = Add-FormButton -FormObject $MainForm -buttonText "Test2" -buttonSize "1QLeft"
+	$btnTest3 = Add-FormButton -FormObject $MainForm -buttonText "Test3" -buttonSize "3QRight"
 
 #endregion column 4
 
