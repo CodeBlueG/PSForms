@@ -1,6 +1,6 @@
 
-#Import-Module PSForms -MinimumVersion 1.1 -MaximumVersion 2.0
-Import-Module C:\Users\garet\Source\Repos\PSForms\PSFormsModule\PSFormsModule.psm1 -MinimumVersion 1.2 -MaximumVersion 2.0
+#Import-Module PSForms -MinimumVersion 1.2 -MaximumVersion 2.0
+Import-Module C:\Users\garet\Source\Repos\PSForms\PSFormsModule\PSForms -MinimumVersion 1.2 -MaximumVersion 2.0
 
 #region User Entered Variables
 # Set values used to create form
@@ -189,6 +189,8 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 #	$mainform = Add-Column $mainform
 	$MainForm = Add-Row $mainform 1 -newColumn
 	$lblLabel3 = Add-FormObject -formObject $mainForm -objectType Label -border
+	$MainForm = Add-Row $mainform 1
+	$btnTest1 = Add-FormButton -FormObject $MainForm -buttonText "Test"
 
 #endregion column 3
 

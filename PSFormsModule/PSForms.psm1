@@ -109,7 +109,7 @@ Function Add-FormButton {
 		[parameter(Mandatory=$false)]
 		[String]
 		$buttonFont,
-		[parameter(Mandatory=$true)]
+		[parameter(Mandatory=$false)]
 		[int]
 		$buttonLocation
 	)
@@ -122,13 +122,26 @@ Function Add-FormButton {
 	[int]$HorizSpace = $FormObject.horizSpace
 
 	$object = New-Object System.Windows.Forms.Button
-	$object.Size = New-Object System.Drawing.Size($FormObject.buttonWidth, $FormObject.buttonHeight)
 	$object.text = $buttonText
 	
-	$LocationX = $FormInternalWidth - ($ButtonWidth + $HorizSpace) * $buttonLocation
-	$LocationY = $FormInternalHeight - $FooterHeight/2 - $ButtonHeight/2
+	If($buttonLocation){
+		$object.Size = New-Object System.Drawing.Size($FormObject.buttonWidth, $FormObject.buttonHeight)
+		$LocationX = $FormInternalWidth - ($ButtonWidth + $HorizSpace) * $buttonLocation
+		$LocationY = $FormInternalHeight - $FooterHeight/2 - $ButtonHeight/2
+		$object.Location = New-Object System.Drawing.Size($LocationX,$LocationY)
+	}
+	Else{
+		Add-Member -InputObject $object -MemberType NoteProperty -Name cellSize -Value $cellSize
+		Add-Member -InputObject $object -MemberType NoteProperty -Name cellRow -Value $FormObject.CurrentRow
+		Add-Member -InputObject $object -MemberType NoteProperty -Name cellColumn -Value $FormObject.CurrentColumn
+		Add-Member -InputObject $object -MemberType NoteProperty -Name rowHigh -Value $FormObject.CurrentRowHigh
+		$object.size = Set-ObjectSize $FormObject $object
+		$object.location = Set-ObjectLocation $formObject $object
+		
+		Write-Host ($object.location)
+		Write-Host ($object.size)
+	}
 
-	$object.Location = New-Object System.Drawing.Size($LocationX,$LocationY)
 
 	If($buttonFont){
 		$object.Font = $buttonFont
@@ -1319,7 +1332,8 @@ Function Set-ObjectSize {
 		1QLeft {$CellWidth = $ColWidth/8 - $HorizSpace/4}
 		HalfRight {$CellWidth = $ColWidth/2 - $HorizSpace/4}
 		3QRight {$CellWidth = ((3 * $ColWidth)/4) - $HorizSpace/4}
-		Double {$CellWidth = $ColWidthOdd + $ColWidthEven + $HorizSpace}	
+		Double {$CellWidth = $ColWidthOdd + $ColWidthEven + $HorizSpace}
+		default {$CellWidth = $ColWidth}
 	}
 
 	$ObjectSize = "$CellWidth,$CellHeight"
