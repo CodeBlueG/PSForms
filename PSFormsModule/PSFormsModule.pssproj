@@ -27,8 +27,8 @@
   </PropertyGroup>
   <ItemGroup />
   <ItemGroup>
-    <Compile Include="PSFormsModule.psd1" />
-    <Compile Include="PSFormsModule.psm1" />
+    <Compile Include="PSForms.psd1" />
+    <Compile Include="PSForms.psm1" />
     <Compile Include="PSFormsModule.tests.ps1" />
     <Compile Include="TestForm.ps1" />
   </ItemGroup>

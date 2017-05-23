@@ -20,6 +20,7 @@
 # 07/02/2017 - 0.1 - Initial Beta release for testing and approval
 # 21/03/2017 - 1.0 - Initial release for use
 # 30/04/2017 - 1.1 - Added $listFile to allow comboBox to use entries from text file, doesn't need to be a variable
+# 30/05/2017 - 1.2 - Adding any location for butons
 #
 #
 # Cmdlets available				:	Version introduced	:	Last Modified
