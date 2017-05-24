@@ -374,8 +374,8 @@ Function Add-FormObject {
 			$EditableField = $true
 			If($DropDown){
 				$object.DropDownStyle = [System.Windows.Forms.ComboBoxStyle]::DropDown
-				$object.AutoCompleteCustomSource.Add("System.Windows.Forms");
-				$object.AutoCompleteCustomSource.AddRange(("System.Data", "Microsoft"));
+				#$object.AutoCompleteCustomSource.Add("System.Windows.Forms");
+				#$object.AutoCompleteCustomSource.AddRange(("System.Data", "Microsoft"));
 				$object.AutoCompleteMode = [System.Windows.Forms.AutoCompleteMode]::SuggestAppend;
 				$object.AutoCompleteSource = [System.Windows.Forms.AutoCompleteSource]::ListItems;
 			}
