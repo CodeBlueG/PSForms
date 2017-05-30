@@ -117,7 +117,10 @@ Function Add-FormButton {
 		$buttonSize,
 		[parameter(Mandatory=$false)]
 		[switch]
-		$hidden
+		$hidden,
+		[parameter(Mandatory=$false)]
+		[switch]
+		$disabled
 	)
 	
 	[int]$FooterHeight = $FormObject.footerHeight
@@ -153,9 +156,8 @@ Function Add-FormButton {
 		$object.Font = $FormObject.formFont
 	}
 
-	If($hidden){
-		$object.visible = $false
-	}
+	If($hidden){$object.visible = $false}
+	If($disabled){$object.enabled = $false}
 
 	$FormObject.Controls.Add($object)
 	return $object
