@@ -159,6 +159,15 @@ Function Add-FormButton {
 	If($hidden){$object.visible = $false}
 	If($disabled){$object.enabled = $false}
 
+# Identify current row and column and compare to current highest values - used in form sizing
+	$CurrentRowCount = [int]$object.cellRow + [int]$object.rowHigh
+	If($FormObject.TotalRowCount -lt $CurrentRowCount){
+		$FormObject.TotalRowCount = $CurrentRowCount
+	}
+	If($FormObject.TotalColumnCount -lt $FormObject.CurrentColumn){
+		$FormObject.TotalColumnCount = $FormObject.CurrentColumn
+	}
+
 	$FormObject.Controls.Add($object)
 	return $object
 }
@@ -391,7 +400,6 @@ Function Add-FormObject {
 		}
 		DateTimePicker {
 			$object.Format = 'Short'
-			If($Text -eq "Hidden"){$Object.Visible = $False}
 			$EditableField = $true
 		}
 		GroupBox {
@@ -418,16 +426,14 @@ Function Add-FormObject {
 		}
 		RichTextBox {
 			If($RowHigh -gt 1){$object.Multiline = $true}
-			If($CellText -eq "Hidden"){$Object.Visible = $False}
-			Else{$object.Text = $CellText}
+			If($cellText){$object.Text = $CellText}
 			$EditableField = $true
 
 		}
 		TextBox {
 			$object.TextAlign = 'Left'
-			If($RowHigh -gt 1){$object.Multiline = $true}
-			If($CellText -eq "Hidden"){$Object.Visible = $False}
-			Else{$object.Text = $CellText}
+			If($object.RowHigh -gt 1){$object.Multiline = $true}
+			If($cellText){$object.Text = $CellText}
 			$EditableField = $true
 		}
 	}
