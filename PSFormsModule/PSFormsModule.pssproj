@@ -25,12 +25,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="WikiImages\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="PSForms.psd1" />
     <Compile Include="PSForms.psm1" />
     <Compile Include="PSFormsModule.tests.ps1" />
     <Compile Include="TestForm.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WikiImages\Windows Form Header 1.png" />
+    <Content Include="WikiImages\Windows Form Header 2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
