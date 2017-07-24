@@ -965,13 +965,22 @@ Function New-Form  {
 		[parameter(Mandatory=$false)]
 		[switch]
 		$maximizeBox,
-		[parameter(Mandatory=$false)]
+		[parameter(
+			Mandatory=$false,
+			ParameterSetName = "PSIcon"
+		)]
 		[switch]
 		$PSIcon,
-		[parameter(Mandatory=$false)]
+		[parameter(
+			Mandatory=$false,
+			ParameterSetName = "iconFile"
+		)]
 		[string]
 		$iconFile,
-		[parameter(Mandatory=$false)]
+		[parameter(
+			Mandatory=$false,
+			ParameterSetName = "iconEncode"
+		)]
 		[string]
 		$iconEncode
 	)
