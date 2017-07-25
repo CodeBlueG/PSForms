@@ -113,8 +113,9 @@ Function Add-FormButton {
 		[int]
 		$buttonLocation,
 		[parameter(Mandatory=$false)]
-		[string]
-		$buttonSize,
+		[ValidateSet("Full","HalfLeft","HalfRight","1QLeft","3QRight","Double")]
+		[String]
+		$buttonSize = "Full",
 		[parameter(Mandatory=$false)]
 		[switch]
 		$hidden,

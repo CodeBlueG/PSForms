@@ -33,6 +33,7 @@
     <Compile Include="PSForms.psm1" />
     <Compile Include="PSFormsModule.tests.ps1" />
     <Compile Include="TestForm.ps1" />
+    <Compile Include="WikiImages\Windows Form AddFormObject 1.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="WikiImages\Windows Form Header 1.png" />
