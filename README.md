@@ -1,37 +1,9 @@
-## Welcome to GitHub Pages
+## PSForms - A PowerShell module to create Windows Forms
 
-You can use the [editor on GitHub](https://github.com/CodeBlueG/PSForms/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Welcome to this project!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+I have created a PowerShell module to allow the quick and easy creation of a grid-based Windows Form that can be used as a GUI for a PowerShell based solution.
 
-### Markdown
+I will continue to update this module with additional features as I find the need for them and I'll fix any issues that I find.  If you find any issues or would like any additions made, please feel free to contact me.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/CodeBlueG/PSForms/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+To learn about the use of the module, please go to the Wiki where I have put together a short tutorial
