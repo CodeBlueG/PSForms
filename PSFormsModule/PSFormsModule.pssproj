@@ -36,6 +36,7 @@
     <Compile Include="WikiImages\Windows Form AddFormObject 1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="WikiImages\Windows Form Buttons 1.png" />
     <Content Include="WikiImages\Windows Form Header 1.png" />
     <Content Include="WikiImages\Windows Form Header 2.png" />
     <Content Include="WikiImages\Windows Form title 1.png" />
