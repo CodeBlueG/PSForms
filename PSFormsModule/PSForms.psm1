@@ -109,10 +109,16 @@ Function Add-FormButton {
 		[parameter(Mandatory=$false)]
 		[String]
 		$buttonFont,
-		[parameter(Mandatory=$false)]
+		[parameter(
+			Mandatory=$false,
+			ParameterSetName = "buttonLocation"
+		)]
 		[int]
 		$buttonLocation,
-		[parameter(Mandatory=$false)]
+		[parameter(
+			Mandatory=$false,
+			ParameterSetName = "buttonSize"
+		)]
 		[ValidateSet("Full","HalfLeft","HalfRight","1QLeft","3QRight","Double")]
 		[String]
 		$buttonSize = "Full",
