@@ -835,7 +835,7 @@ Function Add-Row {
 		$FormObject.CurrentRow = $PreviousRow + $PreviousRowHigh
 		$FormObject.CurrentRowHigh = $rowsHigh
 	}
-#	return $FormObject
+	return $FormObject
 }
 
 <#
