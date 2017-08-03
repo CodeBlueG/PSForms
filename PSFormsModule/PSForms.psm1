@@ -478,12 +478,12 @@ Function Add-FormObject {
 	If($objectType -like "comboBox" -or $objectType -like "CheckedListBox"){
 		If($list){
 			ForEach($entry in $list){
-				$object.Items.Add($entry)
+				$object.Items.Add($entry) | Out-Null
 			}
 		}
 		ElseIf($listFile){
 			ForEach($entry in Get-Content $listFile){
-				$object.Items.Add($entry)
+				$object.Items.Add($entry) | Out-Null
 			}
 		}
 	}
