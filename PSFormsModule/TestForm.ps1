@@ -150,7 +150,12 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 	$txtSampleText22L = Add-FormObject -formObject $mainForm -objectType TextBox -cellSize "HalfLeft"
 	$txtSampleText22R = Add-FormObject -formObject $mainForm -objectType TextBox -cellSize "HalfRight"
 	$MainForm = Add-Row -formObject $mainform 1
-	$cboSampleText23 = Add-FormObject -formObject $mainForm -objectType ComboBox -List $cboSampleText23_List
+	$cboSampleText23 = Add-FormObject -formObject $mainForm -objectType ComboBox #-List $cboSampleText23_List
+	ForEach($entry in $cboSampleText23_List){
+		$cboSampleText23.Items.Add($entry)
+	}
+		$cboSampleText23.add_LostFocus({Test})
+write-host $cboSampleText23
 	$MainForm = Add-Row -formObject $mainform 1
 	$txtSampleText24 = Add-FormObject -formObject $mainForm -objectType TextBox
 	$MainForm = Add-Row -formObject $mainform 1
@@ -220,3 +225,10 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 
 
 	$null = show-Form -formObject $mainForm
+
+
+
+function Test {
+	$lblLabel5.Text = $cboSampleText23.selectedItem.text
+
+}

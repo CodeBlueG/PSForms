@@ -1031,10 +1031,6 @@ Function New-Form  {
 	}
 	$formObject.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::Fixed3D
 
-	If($escapeToClose){
-		$formObject.Add_KeyDown({If($_.KeyCode -eq "Escape"){$formObject.Close()}})
-	}
-
 # Add additional attributes to the form object for use in later functions
 	[int]$ColWidthOdd = $formObject.colWidthOdd
 	[int]$ColWidthEven = $formObject.colWidthEven
