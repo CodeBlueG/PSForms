@@ -252,6 +252,10 @@ Function Add-FormButton {
 .PARAMETER border
     If this switch is added, the object will have a border added around.
 	
+.PARAMETER checked
+    This only applies to checkboxes and allows the checkbox to be checked when the form is opened.  For all other objects, this
+	setting is ignored.
+	
 .PARAMETER mandatory
     If this switch is added, the object will have a border added around.
 	
