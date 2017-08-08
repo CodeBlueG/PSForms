@@ -365,6 +365,9 @@ Function Add-FormObject {
 		$underline,
 		[parameter(Mandatory=$false)]
 		[switch]
+		$strikeout,
+		[parameter(Mandatory=$false)]
+		[switch]
 		$checked,
 		[parameter(Mandatory=$false)]
 		[string]
@@ -454,10 +457,17 @@ Function Add-FormObject {
 
 # build up font style command
 	$fontStyle = $null
-	If($bold){$fontStyle += [System.Drawing.FontStyle]::Bold}
-	If($italic){$fontStyle += [System.Drawing.FontStyle]::Italic}
-	If($underline){$fontStyle += [System.Drawing.FontStyle]::Underline}
-	If(-not $fontStyle){$fontStyle = [System.Drawing.FontStyle]::Regular}
+#	If($bold){$fontStyle += [System.Drawing.FontStyle]::Bold}
+#	If($italic){$fontStyle += [System.Drawing.FontStyle]::Italic}
+#	If($underline){$fontStyle += [System.Drawing.FontStyle]::Underline}
+#	If(-not $fontStyle){$fontStyle = [System.Drawing.FontStyle]::Regular}
+
+	$value = 0
+	If($bold){$value += 1}
+	If($italic){$value += 2}
+	If($underline){$value += 4}
+	If($strikeout){$value += 8}
+	$fontStyle = [System.Drawing.FontStyle]($value)
 	
 	If($cellFont){$chosenFont = $cellFont}
 	Else{$chosenFont = $FormObject.formFont}
