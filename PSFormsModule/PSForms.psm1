@@ -116,8 +116,7 @@ Function Add-FormButton {
 		)]
 		[int]
 		$buttonLocation,
-		[parameter(
-			Mandatory=$false,
+		[parameter(Mandatory=$false,
 			ParameterSetName = "buttonSize"
 		)]
 		[ValidateSet("Full","HalfLeft","HalfRight","1QLeft","3QRight","Double")]
@@ -361,6 +360,9 @@ Function Add-FormObject {
 		[switch]
 		$underline,
 		[parameter(Mandatory=$false)]
+		[switch]
+		$checked,
+		[parameter(Mandatory=$false)]
 		[string]
 		$objectGroup
 	)
@@ -485,6 +487,12 @@ Function Add-FormObject {
 			ForEach($entry in Get-Content $listFile){
 				$object.Items.Add($entry) | Out-Null
 			}
+		}
+	}
+
+	If($objectType -eq "checkBox"){
+		If($checked){
+			$objectType.checked = $true
 		}
 	}
 
