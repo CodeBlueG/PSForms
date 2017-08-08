@@ -17,12 +17,12 @@
 #			the functions.
 #
 # Versions:
-# 07/02/2017 - 0.1 - Initial Beta release for testing and approval
-# 21/03/2017 - 1.0 - Initial release for use
-# 30/04/2017 - 1.1 - Added $listFile to allow comboBox to use entries from text file, doesn't need to be a variable
-# 30/05/2017 - 1.2 - Adding any location for buttons
-# 26/07/2017 - 1.3 - Bug Fixes
-# 08/08/2017 - 1.4 - Added "checked" option for check boxes to allow checked by default.
+# 07/02/2017 - 0.1 - GJE - Initial Beta release for testing and approval
+# 21/03/2017 - 1.0 - GJE -  Initial release for use
+# 30/04/2017 - 1.1 - GJE -  Added $listFile to allow comboBox to use entries from text file, doesn't need to be a variable
+# 30/05/2017 - 1.2 - GJE -  Adding any location for buttons
+# 26/07/2017 - 1.3 - GJE -  Bug Fixes
+# 08/08/2017 - 1.4 - GJE -  Added "checked" option for check boxes to allow checked by default.
 #
 #
 # Cmdlets available				:	Version introduced	:	Last Modified
