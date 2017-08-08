@@ -492,7 +492,7 @@ Function Add-FormObject {
 
 	If($objectType -eq "checkBox"){
 		If($checked){
-			$objectType.checked = $true
+			$object.checked = $true
 		}
 	}
 
