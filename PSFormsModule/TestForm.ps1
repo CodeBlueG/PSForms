@@ -1,6 +1,10 @@
+Get-Module pSforms | Remove-Module
 
-Import-Module PSForms -MinimumVersion 1.2 -MaximumVersion 2.0
-#Import-Module C:\Users\garet\Source\Repos\PSForms\PSFormsModule\PSForms -MinimumVersion 1.2 -MaximumVersion 2.0
+#Import-Module PSForms -MinimumVersion 1.4 -MaximumVersion 2.0
+#Import-Module C:\Users\garet\Source\Repos\PSForms\PSFormsModule\PSForms -MinimumVersion 1.4 -MaximumVersion 2.0
+
+Import-Module C:\Users\garethj.edwards\Source\Repos\PSForms\PSFormsModule\PSForms -MinimumVersion 1.4 -MaximumVersion 2.0
+
 
 #region User Entered Variables
 # Set values used to create form
@@ -23,6 +27,10 @@ Import-Module PSForms -MinimumVersion 1.2 -MaximumVersion 2.0
 #endregion
 
 #region Form Functions
+function Test {
+	$txtSampleText24.Text = $cboSampleText23.text
+
+}
 
 Function chkSampleText28_CheckChanged {
     $datSampleText29.Visible = $chkSampleText28.Checked
@@ -150,12 +158,8 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 	$txtSampleText22L = Add-FormObject -formObject $mainForm -objectType TextBox -cellSize "HalfLeft"
 	$txtSampleText22R = Add-FormObject -formObject $mainForm -objectType TextBox -cellSize "HalfRight"
 	$MainForm = Add-Row -formObject $mainform 1
-	$cboSampleText23 = Add-FormObject -formObject $mainForm -objectType ComboBox #-List $cboSampleText23_List
-	ForEach($entry in $cboSampleText23_List){
-		$cboSampleText23.Items.Add($entry)
-	}
+	$cboSampleText23 = Add-FormObject -formObject $mainForm -objectType ComboBox -List $cboSampleText23_List
 		$cboSampleText23.add_LostFocus({Test})
-write-host $cboSampleText23
 	$MainForm = Add-Row -formObject $mainform 1
 	$txtSampleText24 = Add-FormObject -formObject $mainForm -objectType TextBox
 	$MainForm = Add-Row -formObject $mainform 1
@@ -228,7 +232,3 @@ write-host $cboSampleText23
 
 
 
-function Test {
-	$lblLabel5.Text = $cboSampleText23.selectedItem.text
-
-}
