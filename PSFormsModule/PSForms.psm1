@@ -433,6 +433,12 @@ Function Add-FormObject {
 		DateTimePicker {
 			$object.Format = 'Short'
 			$EditableField = $true
+			If($showCheckBox){
+				$object.showCheckBox = $true
+				If($checked){
+					$object.checked = $true
+				}
+			}
 		}
 		GroupBox {
 
@@ -512,14 +518,6 @@ Function Add-FormObject {
 		}
 	}
 
-	If($objectType -eq "DateTimePicker"){
-		If($showCheckBox){
-			$object.showCheckBox = $true
-			If($checked){
-				$object.checked = $true
-			}
-		}
-	}
 
 # Identify current row and column and compare to current highest values - used in form sizing
 	$CurrentRowCount = [int]$object.cellRow + [int]$object.rowHigh
