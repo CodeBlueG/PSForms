@@ -257,8 +257,13 @@ Function Add-FormButton {
     If this switch is added, the object will have a border added around.
 	
 .PARAMETER checked
-    This only applies to checkboxes and allows the checkbox to be checked when the form is opened.  For all other objects, this
-	setting is ignored.
+    This only applies to checkboxes and allows the checkbox to be checked when the form is opened.  For a date and time picker,
+	this can be used if the 'checked' switch has been applied.
+	For all other objects, this	setting is ignored.
+	
+.PARAMETER checked
+    This only applies to a date and time picker and will show the check box in the picker.  With this, the check box will enable
+	and disable the date picker section.  If this switch is used, the 'checked' switch can also be applied to the field.
 	
 .PARAMETER mandatory
     If this switch is added, the object will have a border added around.
@@ -374,6 +379,9 @@ Function Add-FormObject {
 		[switch]
 		$checked,
 		[parameter(Mandatory=$false)]
+		[switch]
+		$showCheckBox,
+		[parameter(Mandatory=$false)]
 		[string]
 		$objectGroup
 	)
@@ -403,6 +411,9 @@ Function Add-FormObject {
 			$object.Text = $CellText
 			$object.textAlign = "MiddleRight"
 			$EditableField = $true
+			If($checked){
+				$object.checked = $true
+			}
 		}
 		CheckedListBox {
 			$EditableField = $true
@@ -501,9 +512,12 @@ Function Add-FormObject {
 		}
 	}
 
-	If($objectType -eq "checkBox"){
-		If($checked){
-			$object.checked = $true
+	If($objectType -eq "DateTimePicker"){
+		If($showCheckBox){
+			$object.showCheckBox = $true
+			If($checked){
+				$object.checked = $true
+			}
 		}
 	}
 
