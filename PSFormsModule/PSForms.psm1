@@ -17,11 +17,12 @@
 #			the functions.
 #
 # Versions:
-# 07/02/2017 - 0.1 - Initial Beta release for testing and approval
-# 21/03/2017 - 1.0 - Initial release for use
-# 30/04/2017 - 1.1 - Added $listFile to allow comboBox to use entries from text file, doesn't need to be a variable
-# 30/05/2017 - 1.2 - Adding any location for butons
-# 26/07/2017 - 1.3 - Bug Fixes
+# 07/02/2017 - 0.1 - GJE - Initial Beta release for testing and approval
+# 21/03/2017 - 1.0 - GJE -  Initial release for use
+# 30/04/2017 - 1.1 - GJE -  Added $listFile to allow comboBox to use entries from text file, doesn't need to be a variable
+# 30/05/2017 - 1.2 - GJE -  Adding any location for buttons
+# 26/07/2017 - 1.3 - GJE -  Bug Fixes
+# 08/08/2017 - 1.4 - GJE -  Added "checked" option for check boxes to allow checked by default.
 #
 #
 # Cmdlets available				:	Version introduced	:	Last Modified
@@ -100,6 +101,9 @@ Function Add-FormButton {
 <## TO DO ##
 	add button to any part of the form, not only footer
 #>
+	[cmdletbinding(
+        	DefaultParameterSetName='buttonSize'
+   	)]
 	Param(
 		[parameter(Mandatory=$true)]
 		[Object]
@@ -116,8 +120,7 @@ Function Add-FormButton {
 		)]
 		[int]
 		$buttonLocation,
-		[parameter(
-			Mandatory=$false,
+		[parameter(Mandatory=$false,
 			ParameterSetName = "buttonSize"
 		)]
 		[ValidateSet("Full","HalfLeft","HalfRight","1QLeft","3QRight","Double")]
@@ -253,6 +256,10 @@ Function Add-FormButton {
 .PARAMETER border
     If this switch is added, the object will have a border added around.
 	
+.PARAMETER checked
+    This only applies to checkboxes and allows the checkbox to be checked when the form is opened.  For all other objects, this
+	setting is ignored.
+	
 .PARAMETER mandatory
     If this switch is added, the object will have a border added around.
 	
@@ -361,6 +368,12 @@ Function Add-FormObject {
 		[switch]
 		$underline,
 		[parameter(Mandatory=$false)]
+		[switch]
+		$strikeout,
+		[parameter(Mandatory=$false)]
+		[switch]
+		$checked,
+		[parameter(Mandatory=$false)]
 		[string]
 		$objectGroup
 	)
@@ -448,10 +461,17 @@ Function Add-FormObject {
 
 # build up font style command
 	$fontStyle = $null
-	If($bold){$fontStyle += [System.Drawing.FontStyle]::Bold}
-	If($italic){$fontStyle += [System.Drawing.FontStyle]::Italic}
-	If($underline){$fontStyle += [System.Drawing.FontStyle]::Underline}
-	If(-not $fontStyle){$fontStyle = [System.Drawing.FontStyle]::Regular}
+#	If($bold){$fontStyle += [System.Drawing.FontStyle]::Bold}
+#	If($italic){$fontStyle += [System.Drawing.FontStyle]::Italic}
+#	If($underline){$fontStyle += [System.Drawing.FontStyle]::Underline}
+#	If(-not $fontStyle){$fontStyle = [System.Drawing.FontStyle]::Regular}
+
+	$value = 0
+	If($bold){$value += 1}
+	If($italic){$value += 2}
+	If($underline){$value += 4}
+	If($strikeout){$value += 8}
+	$fontStyle = [System.Drawing.FontStyle]($value)
 	
 	If($cellFont){$chosenFont = $cellFont}
 	Else{$chosenFont = $FormObject.formFont}
@@ -485,6 +505,12 @@ Function Add-FormObject {
 			ForEach($entry in Get-Content $listFile){
 				$object.Items.Add($entry) | Out-Null
 			}
+		}
+	}
+
+	If($objectType -eq "checkBox"){
+		If($checked){
+			$object.checked = $true
 		}
 	}
 
