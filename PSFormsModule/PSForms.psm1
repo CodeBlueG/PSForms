@@ -460,12 +460,6 @@ Function Add-FormObject {
 	}
 
 # build up font style command
-	$fontStyle = $null
-#	If($bold){$fontStyle += [System.Drawing.FontStyle]::Bold}
-#	If($italic){$fontStyle += [System.Drawing.FontStyle]::Italic}
-#	If($underline){$fontStyle += [System.Drawing.FontStyle]::Underline}
-#	If(-not $fontStyle){$fontStyle = [System.Drawing.FontStyle]::Regular}
-
 	$value = 0
 	If($bold){$value += 1}
 	If($italic){$value += 2}
@@ -491,7 +485,9 @@ Function Add-FormObject {
 # Add settings for switch parameters
 	If($Hidden){$object.visible = $false}
 	If($disabled){$object.enabled = $false}
-	If($readOnly){$object.readOnly = $true}
+	If($objectType -ne "label"){
+		If($readOnly){$object.readOnly = $true}
+	}
 	If($textAlign){$object.textAlign = $textAlign}
 	If($border){$object.BorderStyle = [System.Windows.Forms.BorderStyle]::FixedSingle}
 
