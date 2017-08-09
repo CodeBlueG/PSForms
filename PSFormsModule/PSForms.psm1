@@ -23,6 +23,7 @@
 # 30/05/2017 - 1.2 - GJE -  Adding any location for buttons
 # 26/07/2017 - 1.3 - GJE -  Bug Fixes
 # 08/08/2017 - 1.4 - GJE -  Added "checked" option for check boxes to allow checked by default.
+# 10/08/2017 - 1.5 - GJE -  Added "showCheckBox" for date and time picker and added "checked" option.  Unchecked by default.
 #
 #
 # Cmdlets available				:	Version introduced	:	Last Modified
@@ -437,6 +438,9 @@ Function Add-FormObject {
 				$object.showCheckBox = $true
 				If($checked){
 					$object.checked = $true
+				}
+				Else{
+					$object.checked = $false
 				}
 			}
 		}
@@ -866,7 +870,7 @@ Function Add-Row {
 		$FormObject.CurrentRow = $PreviousRow + $PreviousRowHigh
 		$FormObject.CurrentRowHigh = $rowsHigh
 	}
-	return $FormObject
+	return
 }
 
 <#
