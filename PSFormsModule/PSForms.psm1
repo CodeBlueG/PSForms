@@ -262,7 +262,7 @@ Function Add-FormButton {
 	this can be used if the 'checked' switch has been applied.
 	For all other objects, this	setting is ignored.
 	
-.PARAMETER checked
+.PARAMETER showCheckBox
     This only applies to a date and time picker and will show the check box in the picker.  With this, the check box will enable
 	and disable the date picker section.  If this switch is used, the 'checked' switch can also be applied to the field.
 	
