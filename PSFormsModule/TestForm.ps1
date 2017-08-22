@@ -32,6 +32,11 @@ function Test {
 
 }
 
+function OnShown-mainform {
+	$FormModuleVersion = (Get-Module PSForms).version
+	$lblVersionDetails.text = $FormModuleVersion
+}
+
 Function chkSampleText28_CheckChanged {
     $datSampleText29.Visible = $chkSampleText28.Checked
 	If($datSampleText29.Visible -eq $false){$datSampleText29.Text = ""}
@@ -150,6 +155,9 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 	Add-Row $mainform 2
 	Add-Row $mainform 1
 	$lblSampleLabel22 = Add-FormObject -formObject $mainForm -objectType Label -cellText "Checked List 22"
+	Add-Row $mainform 2
+	Add-Row $mainform 1
+	$lblVersionDetails = Add-FormObject -FormObject $MainForm -objectType Label -border
 #endregion Column 1
 
 #region Column 2
@@ -212,7 +220,9 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 	$lblLabel5 = Add-FormObject -formObject $mainForm -objectType Label -border
 	Add-Row $mainform 1
 	$btnTest2 = Add-FormButton -FormObject $MainForm -buttonText "Test2" -buttonSize "1QLeft"
-	$btnTest3 = Add-FormButton -FormObject $MainForm -buttonText "Test3" -buttonSize "3QRight"
+#	$btnTest3 = Add-FormButton -FormObject $MainForm -buttonText "Test3" -buttonSize "1QMLeft"
+	$btnTest4 = Add-FormButton -FormObject $MainForm -buttonText "Test4" -buttonSize "1QMRight"
+	$btnTest5 = Add-FormButton -FormObject $MainForm -buttonText "Test5" -buttonSize "1QRight"
 
 #endregion column 4
 
@@ -231,7 +241,9 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 #endregion buttons and pictures
 
 
+	$mainform.add_shown({OnShown-mainform})
 	$null = show-Form -formObject $mainForm
+
 
 
 

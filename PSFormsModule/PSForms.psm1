@@ -124,7 +124,7 @@ Function Add-FormButton {
 		[parameter(Mandatory=$false,
 			ParameterSetName = "buttonSize"
 		)]
-		[ValidateSet("Full","HalfLeft","HalfRight","1QLeft","3QRight","Double")]
+		[ValidateSet("Full","HalfLeft","HalfRight","1QLeft","1QMLeft","1QMRight","1QRight","3QRight","Double")]
 		[String]
 		$buttonSize = "Full",
 		[parameter(Mandatory=$false)]
@@ -322,7 +322,7 @@ Function Add-FormObject {
 		[String]
 		$objectType,
 		[parameter(Mandatory=$false)]
-		[ValidateSet("Full","HalfLeft","HalfRight","1QLeft","3QRight","Double")]
+		[ValidateSet("Full","HalfLeft","HalfRight","1QLeft","1QMLeft","1QMRight","1QRight","3QRight","Double")]
 		[String]
 		$cellSize = "Full",
 		[parameter(Mandatory=$false)]
@@ -1313,13 +1313,17 @@ Function Set-ObjectLocation {
 	If(![bool]!($Col%2)){
 		Switch($CellSize){
 			3QRight {$LocationX = ($FullColWidth * ($Col/2)) - $objectWidth}
+			1QRight {$LocationX = ($FullColWidth * ($Col/2)) - $objectWidth}
+			1QMRight {$LocationX = ($FullColWidth * ($Col/2)) - ($ColWidthOdd/2 - $HorizSpace/4)}
 			HalfRight {$LocationX = ($FullColWidth * ($Col/2)) - ($ColWidthOdd/2 - $HorizSpace/4)}
 			default {$LocationX = $HorizSpace + ($FullColWidth * ((($Col + 1)/2)-1))}
 		}
 	}
 	Else{
 		Switch ($CellSize){
+			1QMRight {$LocationX = ($FullColWidth * ($Col/2)) - ($ColWidthEven/2 - $HorizSpace/4)}
 			HalfRight {$LocationX = ($FullColWidth * ($Col/2)) - ($ColWidthEven/2 - $HorizSpace/4)}
+			1QMLeft {$LocationX = ($FullColWidth * ($Col/2)) - $ObjectWidth}
 			3QRight {$LocationX = ($FullColWidth * ($Col/2)) - $ObjectWidth}
 			Double {$LocationX = $HorizSpace + ($FullColWidth * (($Col/2)-1))}
 			default {$LocationX = ($HorizSpace * 2 + $ColWidthOdd) + ($FullColWidth * (($Col/2)-1))}
@@ -1393,6 +1397,9 @@ Function Set-ObjectSize {
 		Full {$CellWidth = $ColWidth}
 		HalfLeft {$CellWidth = $ColWidth/2 - $HorizSpace/4}
 		1QLeft {$CellWidth = $ColWidth/4 - $HorizSpace/4}
+		1QMLeft {$CellWidth = $ColWidth/4 - $HorizSpace/4}
+		1QMRight {$CellWidth = $ColWidth/4 - $HorizSpace/4}
+		1QRight {$CellWidth = $ColWidth/4 - $HorizSpace/4}
 		HalfRight {$CellWidth = $ColWidth/2 - $HorizSpace/4}
 		3QRight {$CellWidth = ((3 * $ColWidth)/4) - $HorizSpace/4}
 		Double {$CellWidth = $ColWidthOdd + $ColWidthEven + $HorizSpace}
