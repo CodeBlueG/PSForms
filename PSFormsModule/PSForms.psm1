@@ -1312,19 +1312,21 @@ Function Set-ObjectLocation {
 
 	If(![bool]!($Col%2)){
 		Switch($CellSize){
-			3QRight {$LocationX = ($FullColWidth * ($Col/2)) - $objectWidth}
-			1QRight {$LocationX = ($FullColWidth * ($Col/2)) - $objectWidth}
+			1QMLeft {$LocationX = $HorizSpace + ($objectWidth + $HorizSpace/4) + ($FullColWidth * ((($Col + 1)/2)-1))}
 			1QMRight {$LocationX = ($FullColWidth * ($Col/2)) - ($ColWidthOdd/2 - $HorizSpace/4)}
+			1QRight {$LocationX = ($FullColWidth * ($Col/2)) - $objectWidth}
+			3QRight {$LocationX = ($FullColWidth * ($Col/2)) - $objectWidth}
 			HalfRight {$LocationX = ($FullColWidth * ($Col/2)) - ($ColWidthOdd/2 - $HorizSpace/4)}
 			default {$LocationX = $HorizSpace + ($FullColWidth * ((($Col + 1)/2)-1))}
 		}
 	}
 	Else{
 		Switch ($CellSize){
+			1QMLeft {$LocationX = ($HorizSpace * 2 + $ColWidthOdd) + ($objectWidth + $HorizSpace/4) + ($FullColWidth * (($Col/2)-1))}
 			1QMRight {$LocationX = ($FullColWidth * ($Col/2)) - ($ColWidthEven/2 - $HorizSpace/4)}
-			HalfRight {$LocationX = ($FullColWidth * ($Col/2)) - ($ColWidthEven/2 - $HorizSpace/4)}
-			1QMLeft {$LocationX = ($FullColWidth * ($Col/2)) - $ObjectWidth}
+			1QRight {$LocationX = ($FullColWidth * ($Col/2)) - $ObjectWidth}
 			3QRight {$LocationX = ($FullColWidth * ($Col/2)) - $ObjectWidth}
+			HalfRight {$LocationX = ($FullColWidth * ($Col/2)) - ($ColWidthEven/2 - $HorizSpace/4)}
 			Double {$LocationX = $HorizSpace + ($FullColWidth * (($Col/2)-1))}
 			default {$LocationX = ($HorizSpace * 2 + $ColWidthOdd) + ($FullColWidth * (($Col/2)-1))}
 		}

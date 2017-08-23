@@ -12,7 +12,7 @@ Import-Module C:\Users\garethj.edwards\Source\Repos\PSForms\PSFormsModule\PSForm
 	$MainForm = Initialize-Form
 	$MainForm.FormTitle = "Test Form Script"
 	$MainForm.FormVersion = "1.0"
-	$MainForm.ColWidthOdd = 100
+	$MainForm.ColWidthOdd = 200
 	$MainForm.ColWidthEven = 200
 	$MainForm.VertSpace = 5
 	$MainForm.HorizSpace = 8
@@ -210,7 +210,10 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 	Add-Row $mainform 1 -newColumn
 	$lblLabel3 = Add-FormObject -formObject $mainForm -objectType Label -border
 	Add-Row $mainform 1
-	$btnTest1 = Add-FormButton -FormObject $MainForm -buttonText "Test" -buttonSize "Full"
+	$btnTest31 = Add-FormButton -FormObject $MainForm -buttonText "1QLeft" -buttonSize "1QLeft"
+	$btnTest32 = Add-FormButton -FormObject $MainForm -buttonText "1QMLeft" -buttonSize "1QMLeft"
+	$btnTest33 = Add-FormButton -FormObject $MainForm -buttonText "1QMRight" -buttonSize "1QMRight"
+	$btnTest34 = Add-FormButton -FormObject $MainForm -buttonText "1QRight" -buttonSize "1QRight"
 
 #endregion column 3
 
@@ -219,10 +222,10 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 	Add-Row $mainform 1 -newColumn
 	$lblLabel5 = Add-FormObject -formObject $mainForm -objectType Label -border
 	Add-Row $mainform 1
-	$btnTest2 = Add-FormButton -FormObject $MainForm -buttonText "Test2" -buttonSize "1QLeft"
-#	$btnTest3 = Add-FormButton -FormObject $MainForm -buttonText "Test3" -buttonSize "1QMLeft"
-	$btnTest4 = Add-FormButton -FormObject $MainForm -buttonText "Test4" -buttonSize "1QMRight"
-	$btnTest5 = Add-FormButton -FormObject $MainForm -buttonText "Test5" -buttonSize "1QRight"
+	$btnTest41 = Add-FormButton -FormObject $MainForm -buttonText "1QLeft" -buttonSize "1QLeft"
+	$btnTest42 = Add-FormButton -FormObject $MainForm -buttonText "1QMLeft" -buttonSize "1QMLeft"
+	$btnTest43 = Add-FormButton -FormObject $MainForm -buttonText "1QMRight" -buttonSize "1QMRight"
+	$btnTest44 = Add-FormButton -FormObject $MainForm -buttonText "1QRight" -buttonSize "1QRight"
 
 #endregion column 4
 
