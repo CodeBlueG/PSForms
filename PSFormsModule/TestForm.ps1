@@ -208,24 +208,46 @@ $CustomerLogo = "/9j/4AAQSkZJRgABAQEASABIAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAA
 #region Column 3
 #	$mainform = Add-Column $mainform
 	Add-Row $mainform 1 -newColumn
-	$lblLabel3 = Add-FormObject -formObject $mainForm -objectType Label -border
+	$lblLabel31 = Add-FormObject -formObject $mainForm -objectType Label -border
 	Add-Row $mainform 1
-	$btnTest31 = Add-FormButton -FormObject $MainForm -buttonText "1QLeft" -buttonSize "1QLeft"
-	$btnTest32 = Add-FormButton -FormObject $MainForm -buttonText "1QMLeft" -buttonSize "1QMLeft"
-	$btnTest33 = Add-FormButton -FormObject $MainForm -buttonText "1QMRight" -buttonSize "1QMRight"
-	$btnTest34 = Add-FormButton -FormObject $MainForm -buttonText "1QRight" -buttonSize "1QRight"
+	$lblLabel32 = Add-FormObject -FormObject $MainForm -objectType Label -cellText "Button options" -textAlign bottomleft
+	Add-Row $mainform 1
+	$btnTest33 = Add-FormButton -FormObject $MainForm -buttonText "Full" -buttonSize "Full"
+	Add-Row $mainform 1
+	$btnTest34 = Add-FormButton -FormObject $MainForm -buttonText "HalfLeft" -buttonSize "HalfLeft"
+	$btnTest35 = Add-FormButton -FormObject $MainForm -buttonText "HalfRight" -buttonSize "HalfRight"
+	Add-Row $mainform 2
+	$btnTest34 = Add-FormButton -FormObject $MainForm -buttonText "HalfLeft" -buttonSize "HalfLeft"
+	$btnTest35 = Add-FormButton -FormObject $MainForm -buttonText "HalfRight" -buttonSize "HalfRight"
+	Add-Row $mainform 1
+	$btnTest36 = Add-FormButton -FormObject $MainForm -buttonText "1QLeft" -buttonSize "1QLeft"
+	$btnTest37 = Add-FormButton -FormObject $MainForm -buttonText "1QMLeft" -buttonSize "1QMLeft"
+	$btnTest38 = Add-FormButton -FormObject $MainForm -buttonText "1QMRight" -buttonSize "1QMRight"
+	$btnTest39 = Add-FormButton -FormObject $MainForm -buttonText "1QRight" -buttonSize "1QRight"
+	Add-Row $mainform 2
+	$btnTest36 = Add-FormButton -FormObject $MainForm -buttonText "1QLeft" -buttonSize "1QLeft"
+	$btnTest37 = Add-FormButton -FormObject $MainForm -buttonText "1QMLeft" -buttonSize "1QMLeft"
+	$btnTest38 = Add-FormButton -FormObject $MainForm -buttonText "1QMRight" -buttonSize "1QMRight"
+	$btnTest39 = Add-FormButton -FormObject $MainForm -buttonText "1QRight" -buttonSize "1QRight"
 
 #endregion column 3
 
 #region Column 4
 #	$mainform = Add-Column $mainform
 	Add-Row $mainform 1 -newColumn
-	$lblLabel5 = Add-FormObject -formObject $mainForm -objectType Label -border
+	$lblLabel41 = Add-FormObject -formObject $mainForm -objectType Label -border
 	Add-Row $mainform 1
-	$btnTest41 = Add-FormButton -FormObject $MainForm -buttonText "1QLeft" -buttonSize "1QLeft"
-	$btnTest42 = Add-FormButton -FormObject $MainForm -buttonText "1QMLeft" -buttonSize "1QMLeft"
-	$btnTest43 = Add-FormButton -FormObject $MainForm -buttonText "1QMRight" -buttonSize "1QMRight"
-	$btnTest44 = Add-FormButton -FormObject $MainForm -buttonText "1QRight" -buttonSize "1QRight"
+	$lblLabel42 = Add-FormObject -FormObject $MainForm -objectType Label -cellText "Cell object options" -textAlign bottomleft
+	Add-Row $mainform 1
+	$lblLabel = Add-FormObject -FormObject $MainForm -objectType Label -cellText "Full" -cellSize "Full" -border
+	Add-Row $mainform 1
+	$lblLabel = Add-FormObject -FormObject $MainForm -objectType Label -cellText "HalfLeft" -cellSize "HalfLeft" -border
+	$lblLabel = Add-FormObject -FormObject $MainForm -objectType Label -cellText "HalfRight" -cellSize "HalfRight" -border
+	Add-Row $mainform 1
+	$lblLabel = Add-FormObject -FormObject $MainForm -objectType Label -cellText "1QLeft" -cellSize "1QLeft" -border
+	$lblLabel = Add-FormObject -FormObject $MainForm -objectType Label -cellText "1QMLeft" -cellSize "1QMLeft" -border
+	$lblLabel = Add-FormObject -FormObject $MainForm -objectType Label -cellText "1QMRight" -cellSize "1QMRight" -border
+	$lblLabel = Add-FormObject -FormObject $MainForm -objectType Label -cellText "1QRight" -cellSize "1QRight" -border
 
 #endregion column 4
 
