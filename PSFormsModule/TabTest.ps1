@@ -1,4 +1,5 @@
-Import-Module -Name PSForms -MinimumVersion 1.6
+Remove-Module PSForms
+Import-Module -Name PSForms -MinimumVersion 1.7
 
 #region User Entered Variables
 # Set values used to create form
@@ -29,10 +30,10 @@ Function Initialize-Tab ($tabObject) {
 	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name TotalColumnCount -Value 0
 	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name FormTitle -Value "Windows Form"
 	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name FormVersion -Value "1.0"
-	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name ColWidthOdd -Value 150
-	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name ColWidthEven -Value 200
+	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name ColWidthOdd -Value 96
+	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name ColWidthEven -Value 196
 	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name VertSpace -Value 5
-	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name HorizSpace -Value 16
+	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name HorizSpace -Value 8
 	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name RowHeight -Value 20
 	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name ButtonWidth -Value 90
 	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name ButtonHeight -Value 20
@@ -43,6 +44,13 @@ Function Initialize-Tab ($tabObject) {
 	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name mandatoryFields -Value @()
 	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name formFont -Value SystemFonts.MessageBoxFont 
 	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name formFontSize -Value 8
+
+	[int]$ColWidthOdd = $tabObject.colWidthOdd
+	[int]$ColWidthEven = $tabObject.colWidthEven
+	[int]$HorizSpace = $tabObject.HorizSpace
+	$FullColWidth = $ColWidthOdd + $ColWidthEven + ($HorizSpace * 2)
+	Add-Member -InputObject $tabObject -MemberType NoteProperty -Name FullColWidth -Value $FullColWidth
+
 	return $tabObject
 }
 
@@ -133,95 +141,140 @@ $iconFile = "C:\Windows\SysWOW64\cmd.exe"
 $mainform = New-Form -formObject $MainForm -escapeToClose -iconFile $iconFile
 $lblMainFormTitle = Add-FormTitle -formObject $mainForm -titleText "Some Title Text" -titleFont Tahoma -bold
 
+Add-Row -formObject $mainform -rowsHigh 1 -newColumn
+	$null = Add-FormObject -formObject $mainform -objectType Label -border
+Add-Row -formObject $mainform -rowsHigh 1
 
-
+#region TabControl1
 # Add tab Control
-	$tabControl1 = New-Object System.Windows.Forms.TabControl
+	$tabControl1 = Add-FormObject -FormObject $MainForm -objectType tabControl
 	$tabControl1 = Initialize-Tab $tabControl1
-	$tabControl1.location = "40,40"
-	$tabControl1.size = new-object System.Drawing.Size(400,300)
-	$MainForm.controls.add($tabControl1)
 
-
-
+#region TabPage1
 # Add tab page
-	$tabPage1 = New-Object System.Windows.Forms.TabPage
-	$tabPage1.text = "Page 1"
+	$tabPage1 = Add-FormObject -FormObject $tabControl1 -objectType tabPage -cellText "Page 1" -border
 	$tabPage1 = Initialize-Tab $tabPage1
-	$tabPage1.BorderStyle = [System.Windows.Forms.BorderStyle]::FixedSingle
-	$tabControl1.controls.add($tabPage1)
-
-
-
-
-# Add tab page
-	$tabPage2 = New-Object System.Windows.Forms.TabPage
-	$tabPage2.text = "Page 2"
-	$tabPage2 = Initialize-Tab $tabPage2
-	$tabPage2.BorderStyle = [System.Windows.Forms.BorderStyle]::FixedSingle
-	$tabControl1.controls.add($tabPage2)
-
-
-
-
-
-
-
 
 #region Column 1
-	Add-Row -formObject $tabPage1 -rowsHigh 1 -newColumn
-	$lblSampleLabel11 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 11"
-	Add-Row $tabPage1 1
-	$lblSampleLabel12 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 12"
-	Add-Row $tabPage1 1
-	$lblSampleLabel13 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 13"
-	Add-Row $tabPage1 1
-	$lblSampleLabel14 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 14"
-	Add-Row $tabPage1 1
-	$lblSampleLabel15 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 15"
-	Add-Row $tabPage1 1
-	$lblSampleLabel17 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 17"
-	Add-Row $tabPage1 1
-	$lblSampleLabel18 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Check 18"
-	Add-Row $tabPage1 1
-	$lblSampleLabel19 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Date 19"
-	Add-Row $tabPage1 1
+		Add-Row -formObject $tabPage1 -rowsHigh 1 -newColumn
+		$lblSampleLabel11 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 11"
+		Add-Row $tabPage1 1
+		$lblSampleLabel12 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 12"
+		Add-Row $tabPage1 1
+		$lblSampleLabel13 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 13"
+		Add-Row $tabPage1 1
+		$lblSampleLabel14 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 14"
+		Add-Row $tabPage1 1
+		$lblSampleLabel15 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 15"
+		Add-Row $tabPage1 1
+		$lblSampleLabel17 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Label 17"
+		Add-Row $tabPage1 1
+		$lblSampleLabel18 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Check 18"
+#		Add-Row $tabPage1 1
+#		$lblSampleLabel19 = Add-FormObject -formObject $tabPage1 -objectType Label -cellText "Date 19"
+#		Add-Row $tabPage1 1
 #endregion Column 1
 
 #region Column 2
-	Add-Row -formObject $mainform 1 -newColumn
-	$txtSampleText21 = Add-FormObject -formObject $mainForm -objectType TextBox
-	Add-Row -formObject $mainform 1
-	$txtSampleText22L = Add-FormObject -formObject $mainForm -objectType TextBox -cellSize "HalfLeft"
-	$txtSampleText22R = Add-FormObject -formObject $mainForm -objectType TextBox -cellSize "HalfRight"
-	Add-Row -formObject $mainform 1
-	$cboSampleText23 = Add-FormObject -formObject $mainForm -objectType ComboBox -List $cboSampleText23_List
-		$cboSampleText23.add_LostFocus({Test})
-	Add-Row -formObject $mainform 1
-	$txtSampleText24 = Add-FormObject -formObject $mainForm -objectType TextBox
-	Add-Row -formObject $mainform 1
-	$rtbSampleText25 = Add-FormObject -formObject $mainForm -objectType RichTextBox
-	Add-Row -formObject $mainform 1
+		Add-Row -formObject $tabPage1 1 -newColumn
+		$txtSampleText21 = Add-FormObject -formObject $tabPage1 -objectType TextBox
+		Add-Row -formObject $tabPage1 1
+		$txtSampleText22L = Add-FormObject -formObject $tabPage1 -objectType TextBox -cellSize "HalfLeft"
+		$txtSampleText22R = Add-FormObject -formObject $tabPage1 -objectType TextBox -cellSize "HalfRight"
+		Add-Row -formObject $tabPage1 1
+		$cboSampleText23 = Add-FormObject -formObject $tabPage1 -objectType ComboBox -List $cboSampleText23_List
+			$cboSampleText23.add_LostFocus({Test})
+		Add-Row -formObject $tabPage1 1
+		$txtSampleText24 = Add-FormObject -formObject $tabPage1 -objectType TextBox
+		Add-Row -formObject $tabPage1 1
+		$rtbSampleText25 = Add-FormObject -formObject $tabPage1 -objectType RichTextBox
+		Add-Row -formObject $tabPage1 1
 
 
 #endregion column 2
 
+#endregion TabPage1
+
+#region TabPage2
+# Add tab page
+	$tabPage2 = Add-FormObject -FormObject $tabControl1 -objectType tabPage -cellText "Page 2" -border
+	$tabPage2 = Initialize-Tab $tabPage2
+
+#region Column 1
+	Add-Row -formObject $tabPage2 -rowsHigh 1 -newColumn
+	$lblSampleLabel11 = Add-FormObject -formObject $tabPage2 -objectType Label -cellText "Label 11"
+	Add-Row $tabPage2 1
+	$lblSampleLabel12 = Add-FormObject -formObject $tabPage2 -objectType Label -cellText "Label 12"
+	Add-Row $tabPage2 1
+	$lblSampleLabel13 = Add-FormObject -formObject $tabPage2 -objectType Label -cellText "Label 13"
+	Add-Row $tabPage2 1
+	$lblSampleLabel14 = Add-FormObject -formObject $tabPage2 -objectType Label -cellText "Label 14"
+	Add-Row $tabPage2 1
+	$lblSampleLabel15 = Add-FormObject -formObject $tabPage2 -objectType Label -cellText "Label 15"
+	Add-Row $tabPage2 1
+	$lblSampleLabel17 = Add-FormObject -formObject $tabPage2 -objectType Label -cellText "Label 17"
+	Add-Row $tabPage2 1
+	$lblSampleLabel18 = Add-FormObject -formObject $tabPage2 -objectType Label -cellText "Check 18"
+	Add-Row $tabPage2 1
+	$lblSampleLabel19 = Add-FormObject -formObject $tabPage2 -objectType Label -cellText "Date 19"
+	Add-Row $tabPage2 1
+	$lblSampleLabel20 = Add-FormObject -formObject $tabPage2 -objectType Label -cellText "Date 20"
+	Add-Row $tabPage2 1
+#endregion Column 1
+
+#region Column 2
+	Add-Row -formObject $tabPage2 1 -newColumn
+	$txtSampleText21 = Add-FormObject -formObject $tabPage2 -objectType TextBox
+	Add-Row -formObject $tabPage2 1
+	$txtSampleText22L = Add-FormObject -formObject $tabPage2 -objectType TextBox -cellSize "HalfLeft"
+	$txtSampleText22R = Add-FormObject -formObject $tabPage2 -objectType TextBox -cellSize "HalfRight"
+	Add-Row -formObject $tabPage2 1
+	$cboSampleText23 = Add-FormObject -formObject $tabPage2 -objectType ComboBox -List $cboSampleText23_List
+		$cboSampleText23.add_LostFocus({Test})
+	Add-Row -formObject $tabPage2 1
+	$txtSampleText24 = Add-FormObject -formObject $tabPage2 -objectType TextBox
+	Add-Row -formObject $tabPage2 1
+	$rtbSampleText25 = Add-FormObject -formObject $tabPage2 -objectType RichTextBox
+#endregion column 2
+
+#region Column 3
+	Add-Row -formObject $tabPage2 -rowsHigh 5 -newColumn
+	$lblSampleLabel311 = Add-FormObject -formObject $tabPage2 -objectType Label -cellText "Label GJE" -border
+#	Add-Row $tabPage2 1
+#endregion Column 3
+#region Column 4
+	Add-Row -formObject $tabPage2 -rowsHigh 5 -newColumn
+	$lblSampleLabel411 = Add-FormObject -formObject $tabPage2 -objectType Label -cellText "Label GJE" -border
+#	Add-Row $tabPage2 1
+#endregion Column 4
+
+#endregion TabPage2
+
+#endregion TabControl1
+
+
+Add-Row -formObject $mainform -rowsHigh 11 -newColumn
+	$null = Add-FormObject -formObject $mainform -objectType Label
+Add-Row -formObject $mainform -rowsHigh 1
+	$null = Add-FormObject -formObject $mainform -objectType Label -border
+Add-Row -formObject $mainform -rowsHigh 11 -newColumn
+	$null = Add-FormObject -formObject $mainform -objectType Label
+Add-Row -formObject $mainform -rowsHigh 1
+	$null = Add-FormObject -formObject $mainform -objectType Label -border
+Add-Row -formObject $mainform -rowsHigh 11 -newColumn
+	$null = Add-FormObject -formObject $mainform -objectType Label
+Add-Row -formObject $mainform -rowsHigh 1
+	$null = Add-FormObject -formObject $mainform -objectType Label -border
+#Add-Row -formObject $mainform -rowsHigh 10 -newColumn
+#	$null = Add-FormObject -formObject $mainform -objectType Label
+#Add-Row -formObject $mainform -rowsHigh 1
+#	$null = Add-FormObject -formObject $mainform -objectType Label -border
 
 
 
-
-
-
-$tabPage1.parent.totalcolumncount = $tabPage1.totalcolumncount
-$tabPage1.parent.totalrowcount = $tabPage1.totalrowcount
-
-Write-Host $tabControl1.getTabs
-
-
-
-
+#$MainForm = Set-FormSizing -formObject $MainForm
+$tabControl1 = Set-FormSizing -formObject $tabControl1
 $MainForm = Set-FormSizing -formObject $MainForm
-	$MainForm.size = new-object System.Drawing.Size(600,600)
 
 
 $btnButton1 = Add-formbutton -formObject $mainform -buttonText "Test Button 1" -buttonLocation 1
