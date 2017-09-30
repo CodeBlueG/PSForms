@@ -24,6 +24,8 @@
 # 26/07/2017 - 1.3 - GJE -  Bug Fixes
 # 08/08/2017 - 1.4 - GJE -  Added "checked" option for check boxes to allow checked by default.
 # 10/08/2017 - 1.5 - GJE -  Added "showCheckBox" for date and time picker and added "checked" option.  Unchecked by default.
+# 01/09/2017 - 1.6 - GJE -  Added more size options for cells - quarter sizes
+# 01/10/2017 - 1.7 - GJE -  Added tab page and tab control options
 #
 #
 # Cmdlets available				:	Version introduced	:	Last Modified
@@ -46,8 +48,6 @@
 # 
 #
 #endregion Header Information ################################################################
-
-
 
 <#
 .SYNOPSIS
@@ -318,7 +318,7 @@ Function Add-FormObject {
 		[Object]
 		$FormObject,
 		[parameter(Mandatory=$true)]
-		[ValidateSet("CheckBox","CheckedListBox","ComboBox","DateTimePicker","GroupBox","Label","LinkLabel","NumericUpDown","Panel","ProgressBar","RadioButton","RichTextBox","TextBox")]
+		[ValidateSet("CheckBox","CheckedListBox","ComboBox","DateTimePicker","GroupBox","Label","LinkLabel","NumericUpDown","Panel","ProgressBar","RadioButton","RichTextBox","TabControl","TabPage","TextBox")]
 		[String]
 		$objectType,
 		[parameter(Mandatory=$false)]
@@ -472,6 +472,12 @@ Function Add-FormObject {
 			$EditableField = $true
 
 		}
+		TabControl {
+
+		}
+		TabPage {
+			$object.Text = $CellText
+		}
 		TextBox {
 			$object.TextAlign = 'Left'
 			If($object.RowHigh -gt 1){$object.Multiline = $true}
@@ -522,6 +528,8 @@ Function Add-FormObject {
 		}
 	}
 
+# Add object to form
+	$FormObject.Controls.Add($object)
 
 # Identify current row and column and compare to current highest values - used in form sizing
 	$CurrentRowCount = [int]$object.cellRow + [int]$object.rowHigh
@@ -532,13 +540,22 @@ Function Add-FormObject {
 		$FormObject.TotalColumnCount = $FormObject.CurrentColumn
 	}
 
+# If the parent is a tab page, add sizing details to tab control
+	If($FormObject.GetType() -like "*.tabPage"){
+		If($FormObject.parent.TotalRowCount -lt $CurrentRowCount){
+			$FormObject.parent.TotalRowCount = $CurrentRowCount
+		}
+		If($FormObject.parent.TotalColumnCount -lt $FormObject.CurrentColumn){
+			$FormObject.parent.TotalColumnCount = $FormObject.CurrentColumn
+		}		
+	}
+
 # If objectGroup is specified, add a field to the object
 	If($objectGroup){
 		Add-Member -InputObject $object -MemberType NoteProperty -Name objectGroup -Value $objectGroup
 	}
 
-# Add object to form and return object to calling script
-	$FormObject.Controls.Add($object)
+# Return object to calling script
 	return $object
 }
 
@@ -1308,7 +1325,6 @@ Function Set-ObjectLocation {
 	[int]$Row = $Object.cellRow
 	[int]$objectWidth = $object.size.width
 	[string]$cellSize = $object.cellSize
-
 
 	If(![bool]!($Col%2)){
 		Switch($CellSize){
