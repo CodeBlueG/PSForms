@@ -3,7 +3,6 @@
 #   Module: PSForms.psm1
 #
 #   Author: Gareth J. Edwards
-#			GJ.Edwards@Datacom.com.au
 #
 #     Date: 21/03/2017
 #
